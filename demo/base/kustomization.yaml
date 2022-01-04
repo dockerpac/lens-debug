@@ -14,8 +14,8 @@ images:
 - name: dockerpac/docker-demo
   newName: dockerpac/rancher-demo
   newTag: latest
-commonLabels:
-  app.kubernetes.io/name: docker-demo
+#commonLabels:
+#  app.kubernetes.io/name: docker-demo
 vars:
 - fieldref:
     fieldPath: data.MY_NAMESPACE

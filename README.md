@@ -18,6 +18,48 @@ Content-Length: 150
 Connection: keep-alive
 ```
 
+## Debug flow
+
+1. First let's check that everything is tied together
+
+* Using Lens Extension Resource Map
+
+![Lens ResourceMap](images/lens_map.png)
+
+Ingress --> Service but Service !-->  Pods
+
+* Using kubespy
+
+> Kubespy is a tool for observing Kubernetes resources in real time
+https://github.com/pulumi/kubespy
+
+Can be used to check Service --> Healthy Pods
+```sh
+kubespy trace svc docker-demo/docker-demo
+[ADDED v1/Service]  docker-demo/docker-demo
+    ✅ Successfully created Endpoints object 'docker-demo' to direct traffic to Pods
+    ✅ Successfully allocated a cluster-internal IP: docker-demo
+
+[ADDED v1/Endpoints]  docker-demo/docker-demo
+    ❌ Does not direct traffic to any Pods
+```
+
+Use Lens to edit Service Selector and fix Selector to `app.kubernetes.io/name=docker-demo`
+
+![Lens Service Selector](images/lens_service_selector.png)
+
+Now Service and Pods are tied togeter, but Application is still not working
+
+```sh
+curl -I demo.lens-debug.pac.dockerps.io
+
+HTTP/1.1 502 Bad Gateway
+Date: Mon, 03 Jan 2022 18:10:07 GMT
+Content-Type: text/html
+Content-Length: 150
+Connection: keep-alive
+```
+
 ## Useful debug commands. Lens can be used to debug easily
 
 ```sh

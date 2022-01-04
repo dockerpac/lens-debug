@@ -4,6 +4,7 @@ metadata:
   name: docker-demo
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/service-upstream: "false"
 spec:
   ingressClassName: "nginx"
   rules:

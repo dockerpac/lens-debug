@@ -8,6 +8,6 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app.kubernetes.io/name: docker-demo
+    app.kubernetes.io/name: dockerdemo
   sessionAffinity: None
   type: ClusterIP
