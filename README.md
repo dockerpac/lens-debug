@@ -203,14 +203,14 @@ Ideas for improvements
 
 ```sh
 linkerd check
-
-linkerd viz dashboard &
 ```
 
 Inject linkerd sidecar
 
 ```sh
-kubectl -n ingress-nginx get deploy ingress-nginx-controller -o yaml | linkerd inject - | kubectl apply -f -
+#kubectl -n ingress-nginx get deploy ingress-nginx-controller -o yaml | linkerd inject - | kubectl apply -f -
+
+kubectl -n docker-demo annotate ingress/docker-demo nginx.ingress.kubernetes.io/service-upstream="true"
 
 kubectl -n docker-demo get deploy docker-demo -o yaml | linkerd inject - | kubectl apply -f -
 ```
