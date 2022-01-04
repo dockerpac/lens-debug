@@ -57,7 +57,7 @@ ingress.networking.k8s.io/docker-demo   nginx   demo.lens-debug.pac.dockerps.io 
 
 1. First let's check that everything is tied together
 
-* Using Lens Extension Resource Map https://github.com/nevalla/lens-resource-map-extension@
+* Using Lens Extension Resource Map https://github.com/nevalla/lens-resource-map-extension
 
 ![Lens ResourceMap](images/lens_map.png)
 
