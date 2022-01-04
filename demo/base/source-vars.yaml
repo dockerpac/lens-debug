@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: source-vars
+data:
+  MY_NAMESPACE: default
+  URL_HOST: demo.lens-debug.pac.dockerps.io

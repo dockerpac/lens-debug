@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: docker-demo
+  template:
+    spec:
+      containers:
+      - image: dockerpac/docker-demo:latest
+        name: docker-demo
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: docker-demo-config

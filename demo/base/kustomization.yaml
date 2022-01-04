@@ -1,0 +1,36 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: docker-demo
+resources:
+- source-vars.yaml
+- namespace.yaml
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+configMapGenerator:
+- name: docker-demo-config
+  env: env.txt
+images:
+- name: dockerpac/docker-demo
+  newName: dockerpac/rancher-demo
+  newTag: latest
+commonLabels:
+  app.kubernetes.io/name: docker-demo
+vars:
+- fieldref:
+    fieldPath: data.MY_NAMESPACE
+  name: MY_NAMESPACE
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: source-vars
+- fieldref:
+    fieldPath: data.URL_HOST
+  name: URL_HOST
+  objref:
+    apiVersion: v1
+    kind: ConfigMap
+    name: source-vars
+configurations:
+- kustomize-config.yaml
+
