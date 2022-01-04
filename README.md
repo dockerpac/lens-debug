@@ -150,14 +150,22 @@ Note : If your cluster doesn't have Ephemeral Containers, you can use `kubectl d
 kubectl -n docker-demo debug [POD] -it --image=nicolaka/netshoot --share-processes --copy-to=mypod-debug
 ```
 
-5. Let’s try to port-forward to the Pod
+Note : You can also use `kubectl debug` to connect to a Node (not useful to debug a failing Node)
+
+```sh
+kubectl -n kube-system debug -it [NODE]
+
+chroot /host
+```
+
+5. Now let’s try to port-forward to the Pod
 
 ![Lens Portforward](images/lens_portforward.png)
 
 ```sh
 kubectl -n docker-demo port-forward [POD] 8080:8080
 
-# -> Connection to the Pod is OK
+# -> Application is working
 ```
 
 6. Check if traffic is flowing to the Application Pod
